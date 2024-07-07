@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="62b6c362-adce-4a9e-a15f-600281db665b" name="nhakhoa">
+        <fileTransfer rootFolder="/home/nhakhoa/domains/baohanh.thanhloidental.com" accessType="SFTP" host="103.162.31.54" port="26266" sshConfigId="8838e252-ee98-4865-9c4f-5eac18b55931" sshConfig="root@103.162.31.54:26266 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

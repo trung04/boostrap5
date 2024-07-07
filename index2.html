@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Radar Chart to PDF</title>
+    <!-- Include Chart.js from a CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include jsPDF from a CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<canvas id="radarChart" width="400" height="400"></canvas>
+<button onclick="exportToPDF()">Export to PDF</button>
+
+<script>
+    // Sample data for the radar chart
+    var data = {
+        labels: ['A', 'B', 'C', 'D', 'E'], // Labels for each spoke of the radar chart
+        datasets: [{
+            label: 'Sample Radar Chart',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Background color of the area
+            borderColor: 'rgba(54, 162, 235, 1)', // Border color of the area
+            pointBackgroundColor: 'rgba(54, 162, 235, 1)', // Color of the points
+            pointBorderColor: '#fff', // Border color of the points
+            pointHoverBackgroundColor: '#fff', // Hover background color of the points
+            pointHoverBorderColor: 'rgba(54, 162, 235, 1)', // Hover border color of the points
+            data: [5, 7, 3, 8, 6] // Data values corresponding to each label
+        }]
+    };
+
+    // Configuration options
+    var options = {
+        scale: {
+            angleLines: {
+                display: true // Display radial lines connecting the points
+            },
+            ticks: {
+                beginAtZero: true, // Minimum value will be 0
+                max: 10, // Maximum value on the radar chart
+                stepSize: 2 // Step size for ticks
+            }
+        }
+    };
+
+    // Get the context of the canvas element we want to select
+    var ctx = document.getElementById('radarChart').getContext('2d');
+
+    // Create the radar chart
+    var radarChart = new Chart(ctx, {
+        type: 'radar',
+        data: data,
+        options: options
+    });
+
+    // Function to export chart to PDF
+    function exportToPDF() {
+        // Create a new jsPDF instance
+        var doc = new jsPDF();
+
+        // Convert canvas to base64 image
+        var canvas = document.getElementById('radarChart');
+        var imgData = canvas.toDataURL('image/png');
+
+        // Add image to PDF
+        doc.addImage(imgData, 'PNG', 10, 10, 180, 150);
+
+        // Save PDF
+        doc.save('radar_chart.pdf');
+    }
+</script>
+</body>
+</html>
